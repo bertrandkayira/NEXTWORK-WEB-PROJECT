@@ -7,7 +7,7 @@ phases:
   pre_build:
     commands:
       - echo Initializing environment
-      - export CODEARTIFACT_AUTH_TOKEN='aws codeartifact get-authorization-token --domain nextwork --domain-owner 851725390806 --region us-west-2 --query authorizationToken --output text'
+      - FOR /F "tokens=*" %g IN ('aws codeartifact get-authorization-token --domain nextwork --domain-owner 851725390806 --region us-west-2 --query authorizationToken --output text') do (SET CODEARTIFACT_AUTH_TOKEN=%g)
                                         
   build:
     commands:
